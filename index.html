@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FileSystem APIs Demo</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="clearfix page-box">
+    <h1>Hello</h1>
+    <h4><span id="mb-used"></span> / <span id="mb-granted"></span> MB</h4>
+    <div id="messages"></div>
+  </div>
+
+
+  <div class="clearfix page-box">
+    <h1>Create Files</h1>
+
+    <form action="#" method="POST" id="file-form">
+      <div class="field">
+        <input type="text" name="filename" id="filename" placeholder="Filename (e.g. treehouse.txt)">
+      </div>
+      <div class="field">
+        <textarea name="content" id="content" placeholder="Type your content here..."></textarea>
+      </div>
+      <div class="field">
+        <button type="submit">Save File</button>
+      </div>
+    </form>
+
+    <div class="files">
+      <h2>File Browser</h2>
+      <div class="file-list"></div>
+    </div>
+
+  </div>
+
+  <div class="clearfix page-box">
+    <h1>Upload Images</h1>
+
+    <form action="#" method="POST" id="image-form">
+      <div class="field">
+        <input type="file" name="imagename" id="upload-image" multiple="multiple" accept="image/*">
+      </div>
+      <div class="field">
+        <div id="preview-images" class="clearfix"></div>
+      </div>
+      <div class="field">
+        <button type="submit">Save</button>
+      </div>
+    </form>
+
+    <div class="files">
+      <h2>File Browser</h2>
+      <div class="file-list"></div>
+    </div>
+
+  </div>
+
+  <div class="clearfix page-box">
+    <h1>Write Notes</h1>
+
+    <form action="#" method="POST" id="notes-form">
+      <div class="field">
+        <input type="text" name="canvasname" id="canvasname" placeholder="Filename (e.g. treehouse.png)">
+      </div>
+      <div class="field">
+        <canvas id="notes-canvas" width="650px" height="400"></canvas>
+        <div id="preview-canvas" class="hidden"></div>
+      </div>
+      <div class="field">
+        <a href="#" class="btn clear">Clear</a>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+
+    <div class="files">
+      <h2>File Browser</h2>
+      <div class="file-list"></div>
+    </div>
+
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="//code.createjs.com/easeljs-0.8.2.min.js"></script>
+  <script src="app.js"></script>
+  <script src="draw.js"></script>
+  <script>
+  $(function(){
+    initCanvas();
+    $("a.clear").on('click', function(e){
+      e.preventDefault();
+      $("#canvasname").val('');
+      $("#preview-canvas").empty().addClass('hidden');
+      $("#notes-canvas").removeClass('hidden');
+      $("#notes-form button").prop('disabled', false).removeClass('hidden');
+      clearCanvas();
+    })
+  });
+  </script>
+</body>
+</html>
